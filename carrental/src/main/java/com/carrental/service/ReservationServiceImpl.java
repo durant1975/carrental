@@ -27,18 +27,5 @@ public class ReservationServiceImpl implements ReservationService {
         return null;
     }
 
-    @Override
-    public void saveReservation(Reservation reservation) {
 
-    }
-
-    @Override
-    public Reservation getReservationById(Integer id) {
-        return null;
-    }
-
-    @Override
-    public void deleteReservationById(Integer id) {
-
-    }
 }

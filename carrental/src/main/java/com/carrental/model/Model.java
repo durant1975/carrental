@@ -8,8 +8,9 @@ import javax.persistence.*;
 @Entity
 public class Model {
     @Id
-    @Column(name="ID",unique =true, nullable=false)
+    @Column(name="Model_ID",unique =true, nullable=false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer Model_ID;
+    @Column(name="Status",unique =true, nullable=false,length =30)
     private String Status;
 }
