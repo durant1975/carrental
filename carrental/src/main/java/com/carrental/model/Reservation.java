@@ -3,19 +3,30 @@ package com.carrental.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Data
 @Entity
 
 public class Reservation {
     @Id
-    @Column(name="ID",unique =true, nullable=false)
+    @Column(name="Reservation_ID",unique =true, nullable=false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer Reservation_ID;
-    @Column(name="Customer_ID")
+    // @Column(name="Customer_ID")
     private Integer Car_ID;
-    @Column(name="Branch_ID")
-    private Integer Branch_ID;
+
+
+    @ManyToOne
+    @JoinColumn( name ="Branch_ID" )
+    private Branch branch;
+
+    @ManyToOne
+    @JoinColumn(name ="Status_ID" )
+    private ReservationStatus reservationstatus;
+
     @Column(name="Booking_Date")
     private Date Booking_Date;
     @Column(name="Date_From")
@@ -24,7 +35,5 @@ public class Reservation {
     private Date Date_To;
     @Column(name="TotalCost",unique =true, nullable=false,length =100)
     private Float TotalCost;
-    @Column(name="Status_ID")
-    private Integer Status_ID;
 
 }

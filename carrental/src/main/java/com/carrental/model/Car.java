@@ -3,33 +3,55 @@ package com.carrental.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 public class Car {
     @Id
-    @Column(name="ID",unique =true, nullable=false)
+    @Column(name="Car_ID",unique =true, nullable=false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer Car_ID;
-    @Column(name="Branch_ID")
-    private Integer Branch_ID;
+
+    @ManyToOne
+    @JoinColumn(name ="Branch_ID" )
+    private Branch branches;
+
     @Column(name="Car_Code",unique =true, nullable=false,length =100)
     private Integer Car_Code;
-    @Column(name="Brand_ID")
-    private Integer Brand_ID;
-    @Column(name="Model_ID")
-    private Integer Model_ID;
-    @Column(name="BodyType_ID")
-    private Integer BodyType_ID;
-    @Column(name="Color_ID")
-    private Integer Color_ID;
+
+    @ManyToOne
+    @JoinColumn(name ="Brand_ID" )
+    private Brand brand;
+
+    @ManyToOne
+    @JoinColumn(name ="Model_ID" )
+    private Model model;
+
+    @ManyToOne
+    @JoinColumn(name ="BodyType_ID" )
+    private BodyType bodyType;
+
+
+    @ManyToOne
+    @JoinColumn(name ="Color_ID" )
+    private Color color;
+
     @Column(name="Year")
     private Integer Year;
+
     @Column(name="Per_date_rate")
     private Float Per_date_rate;
-    @Column(name="Status_ID")
-    private Integer Status_ID;
+
+    @ManyToOne
+    @JoinColumn(name ="Status_ID" )
+    private CarStatus status;
+
+    @OneToMany
+    @JoinColumn (name= "Reservation_ID", referencedColumnName="Car_ID")
+    List<Reservation> reservations = new ArrayList();
 
 
 

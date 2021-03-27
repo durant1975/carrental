@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -17,15 +18,18 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationRepository reservationRepository;
 
 
-
-  //  public List<Reservation> getAllReservation() {
-       // return null;
-    //}
-
     @Override
     public List<Reservation> getAllReservation() {
-        return null;
+        return getAllReservation();
     }
+    @GetMapping("/ReservationteamForm")
+    public String ReservationteamForm(Model model) {
+        // create model attribute to bind form data
+        Reservation reservation = new Reservation();
+        model.addAttribute("Reservation", reservation);
+        return "new_reservation";
+    }
+
 
 
 }

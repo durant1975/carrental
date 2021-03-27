@@ -4,6 +4,8 @@ package com.carrental.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity( name="branch")
@@ -20,6 +22,10 @@ public class Branch {
     private Integer Address;
     @Column(name="Phone",unique =true, nullable=false,length =100)
     private Integer Phone;
+    @OneToMany
+    @JoinColumn (name= "Employee_ID", referencedColumnName="Branch_ID")
+    List<Employee> employees = new ArrayList();
+
 
 }
 

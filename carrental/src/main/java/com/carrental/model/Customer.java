@@ -4,13 +4,15 @@ package com.carrental.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
 @Entity
 public class Customer {
     @Id
-    @Column(name="ID",unique =true, nullable=false)
+    @Column(name="Customer_ID",unique =true, nullable=false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer Customer_ID;
     private String User_Name;
@@ -24,4 +26,10 @@ public class Customer {
     private String Phone;
     @Column(name="Address",unique =true, nullable=false,length =100)
     private String Address;
+
+    @OneToMany(mappedBy="Customer")
+    private Reservation reservation;
+   /*  @JoinColumn (name= "Customer_ID", referencedColumnName="Customer_ID")
+    List<Reservation> reservations = new ArrayList();,*/
+
 }
